@@ -36,13 +36,6 @@ const polybiusModule = (function () {
       [, "d", "i/j", "o", "t", "y"],
       [, "e", "k", "p", "u", "z"],
     ];
-    const polyObj = {
-      1: { 1: "a", 2: "f", 3: "l", 4: "q", 5: "v" },
-      2: { 1: "b", 2: "g", 3: "m", 4: "r", 5: "w" },
-      3: { 1: "c", 2: "h", 3: "n", 4: "s", 5: "x" },
-      4: { 1: "d", 2: "i/j", 3: "o", 4: "t", 5: "y" },
-      5: { 1: "e", 2: "k", 3: "p", 4: "u", 5: "z" },
-    };
 
     if (encode) {
       for (let first = 1; first < 6; first++) {
@@ -76,13 +69,13 @@ const polybiusModule = (function () {
           outputArr.push(inputArr[0]);
           inputArr.shift();
         }
+        outputArr.push(polyArr[inputArr[0]][inputArr[1]]);
+        inputArr.shift();
         inputArr.shift();
       }
     }
-    return outputArr;
+    return outputArr.join("");
   }
-  console.log(polybius("abcde fghijk lmnop qrstu vwxyz"));
-  console.log(polybius("21 21", false));
   return {
     polybius,
   };
