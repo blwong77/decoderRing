@@ -26,23 +26,56 @@ const polybiusModule = (function () {
 
   // create a polybius array = array with 5 arrays
   function polybius(input, encode = true) {
-    const inputArr = input.split("");
+    const inputArr = input.toLowerCase().split("");
     const outputArr = [];
-    const polyObj = {
-      1:{1:'a', 2:'f',   3:'l', 4:'q', 5:'v'},
-      2:{1:'b', 2:'g',   3:'m', 4:'r', 5:'w'},
-      3:{1:'c', 2:'h',   3:'n', 4:'s', 5:'x'},
-      4:{1:'d', 2:'i/j', 3:'o', 4:'t', 5:'y'},
-      5:{1:'e', 2:'k',   3:'p', 4:'u', 5:'z'}
-  };
-    for(let word of input.split(" ")){
-      if((word.length % 2) === 1) return false
+    const polyArr = [
+      ,
+      [, "a", "f", "l", "q", "v"],
+      [, "b", "g", "m", "r", "w"],
+      [, "c", "h", "n", "s", "x"],
+      [, "d", "i/j", "o", "t", "y"],
+      [, "e", "k", "p", "u", "z"],
+    ];
+
+    if (encode) {
+      for (let first = 1; first < 6; first++) {
+        for (let second = 1; second < 6; second++) {
+          if (inputArr[0] === " ") {
+            outputArr.push(inputArr[0]);
+            inputArr.shift();
+          }
+          if (polyArr[first][second].includes(inputArr[0])) {
+            outputArr.push(`${first}${second}`);
+            inputArr.shift();
+            first = 0;
+            second = 1;
+            break;
+          }
+        }
+      }
+    } else {
+      for (let word of input.split(" ")) {
+        if (word.length % 2 === 1) return false;
+        if (
+          input.includes("6") ||
+          input.includes("7") ||
+          input.includes("8") ||
+          input.includes("9")
+        )
+          return false;
+      }
+      for (; inputArr.length !== 0; ) {
+        if (inputArr[0] === " ") {
+          outputArr.push(inputArr[0]);
+          inputArr.shift();
+        }
+        outputArr.push(polyArr[inputArr[0]][inputArr[1]]);
+        inputArr.shift();
+        inputArr.shift();
+      }
     }
-    if(!encode){
-      if(input.includes('6') || input.includes('7') || input.includes('8') || input.includes('9')) return false;
-    }
+    return outputArr.join("");
   }
-  console.log(polybius("21 21", false));
   return {
     polybius,
   };

@@ -43,7 +43,7 @@ describe("caesar()",() => {
             const actual = caesar(messageCap, shift, encode);
             const expected = caesar(messageLow, shift, encode);
 
-            expect(actual).to.be.equal(expected);
+            expect(actual).to.be.eql(expected);
         })
         it("should ignore special characters",() => {
             const message = "&*)$hello)(* worl@d*%";
@@ -51,7 +51,7 @@ describe("caesar()",() => {
             const actual = caesar(message, shift, encode);
             const expected = "&*)$lipps)(* asvp@h*%";
 
-            expect(actual).to.be.equal(expected);
+            expect(actual).to.be.eql(expected);
         })
     })
 
@@ -63,7 +63,7 @@ describe("caesar()",() => {
             const actual = caesar(msgCap, shift, decode);
             const expected = caesar(msgLow, shift, decode);
 
-            expect(actual).to.be.equal(expected);
+            expect(actual).to.be.eql(expected);
         })
         it("should ignore special characters",() => {
             const message = "&*)$lipps)(* asvph*%";
@@ -71,7 +71,7 @@ describe("caesar()",() => {
             const actual = caesar(message, shift, decode);
             const expected = "&*)$hello)(* world*%";
 
-            expect(actual).to.be.equal(expected);
+            expect(actual).to.be.eql(expected);
         })
     })
 })

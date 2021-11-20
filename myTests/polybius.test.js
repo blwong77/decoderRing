@@ -55,6 +55,13 @@ describe("Polybius Square", () => {
 
             expect(actual).to.be.false;
         })
+        it("should ignore capital letters and treat them as lowercase", () => {
+            let message = "HELLO";
+            const actual = polybius(message);
+            const expected = polybius("hello");
+
+            expect(actual).to.be.eql(expected);
+        })
     })
     describe("Encoding", () => {
         it("should default to encoding if no argument is given", () => {
@@ -62,22 +69,37 @@ describe("Polybius Square", () => {
             const actual = polybius(message);
             const expected = "5133314341423322 4234 125433";
 
-            expect(actual).to.be.equal(expected);
+            expect(actual).to.be.eql(expected);
         })
         it("should maintain spaces when encoding", () => {
             let message = "hello world";
-            const acutal = polybius(message, encode);
+            const actual = polybius(message, encode);
             const expected = "3251131343 2543241341"
 
-            expect(acutal).to.be.equal(expected);
+            expect(actual).to.be.equal(expected);
+        })
+        it("should encode i and j as both 42", () => {
+            let message = "i j";
+            const actual = polybius(message, encode);
+            const expected = "42 42";
+
+            expect(actual).to.be.equal(expected);
         })
     })
     describe("Decoding", () => {
         it("should maintain spaces when decoding", () => {
             let message = "3251131343 2543241341";
             const actual = polybius(message, decode);
+            const expected = "hello world";
 
-            expect(actual).to.be.equal("hello world")
+            expect(actual).to.be.equal(expected)
+        })
+        it("should decode 42 to 'i/j'", () => {
+            let message = "42 42 42 42";
+            const actual = polybius(message, decode);
+            const expected = "i/j i/j i/j i/j";
+
+            expect(actual).to.be.equal(expected);
         })
     })
 })
