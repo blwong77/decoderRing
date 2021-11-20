@@ -55,6 +55,13 @@ describe("Polybius Square", () => {
 
             expect(actual).to.be.false;
         })
+        it("should ignore capital letters and treat them as lowercase", () => {
+            let message = "HELLO";
+            const actual = polybius(message);
+            const expected = polybius("hello");
+
+            expect(actual).to.be.equal(expected);
+        })
     })
     describe("Encoding", () => {
         it("should default to encoding if no argument is given", () => {
