@@ -1,8 +1,4 @@
-// Please refrain from tampering with the setup code provided here,
-// as the index.html and test files rely on this setup to work properly.
-// Only add code (e.g., helper methods, variables, etc.) within the scope
-// of the anonymous function on line 6
-
+// Polybius square example
 //   1	  2	  3	  4	  5
 // 1	A	  B	  C	  D	  E
 // 2	F	  G	  H	  I/J	K
@@ -22,9 +18,6 @@
 //   decoding 42 should return I/J
 
 const polybiusModule = (function () {
-  // you can add any code you want within this function scope
-
-  // create a polybius array = array with 5 arrays
   function polybius(input, encode = true) {
     const inputArr = input.toLowerCase().split("");
     const outputArr = [];
@@ -64,7 +57,7 @@ const polybiusModule = (function () {
         )
           return false;
       }
-      for (; inputArr.length !== 0; ) {
+      while (inputArr.length !== 0) {
         if (inputArr[0] === " ") {
           outputArr.push(inputArr[0]);
           inputArr.shift();
