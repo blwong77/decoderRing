@@ -7,13 +7,25 @@ const substitutionModule = (function () {
   // you can add any code you want within this function scope
 
   function substitution(input, alphabet, encode = true) {
+    const cipher = buildCipher(alphabet);
+  }
+
+  // builds the substitution cipher when given an alphabet
+  // returns an object with keys of cipher alphabet and values of std alphabet
+  function buildCipher(alphabet){
     let asciiKey = 97;
-    // let 
+    const cipher = {};
+
+    for(let char of alphabet){
+      cipher[char] = String.fromCharCode(asciiKey);
+      asciiKey++;
+    }
+    console.log(cipher)
+    return cipher;
   }
 
   return {
     substitution,
-  };
+  };  
 })();
-
 module.exports = { substitution: substitutionModule.substitution };
