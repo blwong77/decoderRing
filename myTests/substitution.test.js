@@ -1,6 +1,8 @@
 // Write your tests here!
 const expect = require("chai").expect
 const {substitution} = require("../src/substitution.js")
+const encode = true;
+const decode = false;
 
 describe("substitution()", () => {
     describe("error handling", () => {
@@ -8,6 +10,9 @@ describe("substitution()", () => {
 
         })
         it("should return false if any of the alphabet has repeated characters", () => {
+
+        })
+        it("should return false if not given an alphabet", () => {
 
         })
     })
