@@ -7,7 +7,8 @@ const substitutionModule = (function () {
   // you can add any code you want within this function scope
 
   function substitution(input, alphabet, encode = true) {
-    // your solution code here
+    let asciiKey = 97;
+    // let 
   }
 
   return {
