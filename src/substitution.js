@@ -10,12 +10,12 @@ const substitutionModule = (function () {
   // you can add any code you want within this function scope
 
   function substitution(input, alphabet, encode = true) {
-    if(!alphabet) return false;
+    if (!alphabet) return false;
     const outputArr = [];
     const cipher = buildCipher(alphabet.toLowerCase(), encode);
-    if(!cipher) return false;
-    for(let char of input.toLowerCase()){
-      if(char === " " || !cipher[char]) outputArr.push(char);
+    if (!cipher) return false;
+    for (let char of input.toLowerCase()) {
+      if (char === " " || !cipher[char]) outputArr.push(char);
       outputArr.push(cipher[char]);
     }
     return outputArr.join("");
@@ -24,15 +24,21 @@ const substitutionModule = (function () {
   // builds the substitution cipher when given an alphabet
   // should return false if a white space is passed in the alphabet
   // returns an object with keys of cipher alphabet and values of std alphabet
-  function buildCipher(alphabet, encode){
-    if(!alphabet || alphabet.length !== 26 || alphabet.includes(" ") || new Set(alphabet).size !== 26) return false;
+  function buildCipher(alphabet, encode) {
+    if (
+      !alphabet ||
+      alphabet.length !== 26 ||
+      alphabet.includes(" ") ||
+      new Set(alphabet).size !== 26
+    )
+      return false;
     let asciiKey = 97;
     const cipher = {};
-    
-    for(let char of alphabet){
-      if(encode){
-      cipher[String.fromCharCode(asciiKey)] = char;
-      }else{
+
+    for (let char of alphabet) {
+      if (encode) {
+        cipher[String.fromCharCode(asciiKey)] = char;
+      } else {
         cipher[char] = String.fromCharCode(asciiKey);
       }
       asciiKey++;
@@ -41,6 +47,6 @@ const substitutionModule = (function () {
   }
   return {
     substitution,
-  };  
+  };
 })();
 module.exports = { substitution: substitutionModule.substitution };

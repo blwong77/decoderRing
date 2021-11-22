@@ -28,8 +28,8 @@ describe("substitution()", () => {
                 expect(actual).to.be.false;
             })
             it("should return false, length is greater than 26 with repeated characters", () => {
-                const message = "hello!"
-                const alphabet = "qwertyuiopasdfghjklzxcvbnmmm"; // 26, m is repeated
+                const message = "abcdefghijklmnopqrstuvwxyz!"
+                const alphabet = "qwertyuiopasdfghjklzxcvbnmmm"; // 28, m is repeated
                 const actual = substitution(message, alphabet, encode);
     
                 expect(actual).to.be.false;
